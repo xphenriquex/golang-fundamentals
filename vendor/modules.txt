@@ -1,0 +1,2 @@
+# github.com/iancoleman/strcase v0.3.0
+## explicit; go 1.16
