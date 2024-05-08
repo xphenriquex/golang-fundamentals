@@ -6,7 +6,6 @@ func main() {
 	// channelMain()
 	// channelBufferMain()
 	// channelSynchronizationMain()
-	// channelSynchronizationMain()
 	// exerciseMain()
 	channelSelectMain()
 }

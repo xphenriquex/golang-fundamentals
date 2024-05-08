@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
 func sum(values []int, c chan int) {
@@ -30,12 +31,41 @@ func channelMain() {
 	//<-ch 	      //obter
 
 	//------------------------------------------------------------
-	values := []int{10, 20, 30, -20, 0, 10}
+	// values := []int{10, 20, 30, -20, 0, 10}
 
-	c := make(chan int)
-	go sum(values[len(values)/2:], c)
-	go sum(values[:len(values)/2], c)
-	x, y := <-c, <-c //receive from channel c
+	// c := make(chan int)
+	// go sum(values[len(values)/2:], c)
+	// go sum(values[:len(values)/2], c)
+	// x, y := <-c, <-c //receive from channel c
 
-	fmt.Println(x, y, x+y)
+	// fmt.Println(x, y, x+y)
+
+	//------------------------------------------------------------
+
+	channel := make(chan string)
+	go writeOnscreen("Olá Mundo!", channel)
+
+	fmt.Println("Depois da função escrever começar a ser executada")
+
+	// for {
+	// 	message, open := <-channel
+	// 	if !open {
+	// 		break
+	// 	}
+	// 	fmt.Println(message)
+	// }
+
+	for message := range channel {
+		fmt.Println(message)
+	}
+
+	fmt.Println("Fim do programa")
+}
+
+func writeOnscreen(text string, channel chan string) {
+	for i := 0; i < 5; i++ {
+		channel <- text
+		time.Sleep(time.Second)
+	}
+	close(channel)
 }
