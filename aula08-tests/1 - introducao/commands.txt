@@ -1,0 +1,11 @@
+
+// resultado é nome do arquivo
+
+
+got test
+go test ./...
+go test -v
+go test --cover
+go test --coverprofile resultado.txt (nome que quiser)
+go tool cover --func=resultado.txt (nome que quiser)
+go tool cover --html=resultado.txt (nome que quiser)
